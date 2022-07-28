@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use laravel\Passport\Passport;
 use App\Models\User;
 
 
@@ -42,7 +43,7 @@ class AuthController extends Controller
             return response(['message' => 'Invalid credentials']);
         }
             $user = $request->user();
-            $accessToken = $user->createToken('authTestToken')->accessToken;
+            $accessToken = $user->createToken('authToken')->accessToken;
 
             return response([
                 'user'=> Auth::user(),
