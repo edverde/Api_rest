@@ -40,16 +40,30 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
         if(!Auth()->attempt($loginData)){
-            return response(['message' => 'Invalid credentials']);
+            return response([
+                'message' => 'Invalid credentials',
+                'status' => 401
+            ]);
         }
             $user = $request->user();
             $accessToken = $user->createToken('authToken')->accessToken;
 
             return response([
                 'user'=> Auth::user(),
-                'access_token'=> $accessToken
+                'access_token'=> $accessToken,
+                'status' => 200
             ]);
     
         
     }
+
+    
+    public function logout(Request $request) {
+        $request->user()->token()->revoke();
+        return response()->json([
+            "message" => "You logged out successfully",
+            "status" => 200
+        ]);
+    }
+
 }
