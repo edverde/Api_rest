@@ -22,5 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::ApiResource('/ceo', CEOController::class)->middleware('auth:api');
+
+Route::middleware('auth:api')->group(function () {
+
+
+});
 
