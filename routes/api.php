@@ -20,11 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [RegisterController::class, 'register'])->name('api.register');
+Route::post('/login', [LoginController::class, 'login'])->name('api.login');
 
 Route::middleware('auth:api')->group(function () {
 
+    Route::post('/logout', [LogoutController::class, 'logout'])->name('api.logout');
 
 });
 
