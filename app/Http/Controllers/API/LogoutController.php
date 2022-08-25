@@ -15,8 +15,8 @@ class LogoutController extends Controller
     public function logout(Request $request) {
         $request->user()->token()->revoke();
         return response()->json([
-            "message" => 'You have closed the session',
-            'status' => 200
+            "message" => "You logged out successfully",
+            "status" => 200
         ]);
     }
 }
