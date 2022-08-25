@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register', [RegisterController::class, 'register'])->name('api.register');
 Route::post('/login', [LoginController::class, 'login'])->name('api.login');
 
-Route::middleware('auth:api')->group(function () {
+// Route::middleware('auth:api')->group(function () {
 
     Route::post('/logout', [LogoutController::class, 'logout'])->name('api.logout');
+    Route::get('/users', [UserController::class, 'index'])->name('api.users.index');
 
-});
+// });
 

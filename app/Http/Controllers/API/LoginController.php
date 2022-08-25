@@ -17,14 +17,15 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
         if(!Auth()->attempt($loginData)){
-            return response(['message' => 'Invalid credentials']);
+            return response(['message' => 'Invalid credentials','status' => 401]);
         }
             $user = $request->user();
             $accessToken = $user->createToken('authTestToken')->accessToken;
 
             return response([
                 'user'=> Auth::user(),
-                'access_token'=> $accessToken
+                'access_token'=> $accessToken,
+                'status' => 200
             ]);
     
         
